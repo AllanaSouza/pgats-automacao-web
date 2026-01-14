@@ -1,0 +1,9 @@
+{
+  "name": "QA Tester",
+  "email": "qatester1766875828946@test.com",
+  "body": "Fixtures are a great way to mock data for responses to routes",
+  "subject": "Fixtures are a great way to mock data for responses to routes",
+  "message": "Estou enviando uma mensagem de teste usando dados do arquivo contactus.json",
+  "user": "qatester1766875828946@test.com",
+  "password": "teste1234"
+}
