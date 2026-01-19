@@ -1,0 +1,22 @@
+name: Web E2E Tests
+
+on:
+  workflow_dispatch:
+
+jobs:
+  e2e-tests:
+
+  run-on: windows
+
+  steps:
+    # clone do projeto para a máquina
+    - users: actions/checkout@v4
+
+    - name: Conferir a versão instalada do Node
+      run: node --version
+
+    - name: Instalando dependências
+      run: npm insall
+
+    - name: executar os testes
+      run: npx cypress run
