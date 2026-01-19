@@ -5,18 +5,19 @@ on:
 
 jobs:
    e2e-tests:
+
        runs-on:  windows-latest
 
       steps:
-           - name:  Checkout  do  código
-             uses:  actions/checkout@v4
 
-          -  name:  Conferir a  versão  instalada  do Node
-              run:  node  --version
+        - uses:  actions/checkout@v4
 
-           - name:  Instalar  dependências
-              run: npm  install
+        -  name:  Conferir a  versão  instalada  do Node
+            run:  node  --version
+        
+        - name:  Instalar  dependências
+            run: npm  install
 
-          -  name:  Executar os  testes  Cypress
-              run: npx  cypress  run
+        -  name:  Executar os  testes  Cypress
+            run: npx  cypress  run
 
