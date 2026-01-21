@@ -17,8 +17,11 @@ jobs:
    - name: Node version
      run: node --version
 
-   - name: Instalando dependências
-     run: npm install
+   - name: Install dependencies
+     run: npm ci
 
-   - name: Executando os testes
+   - name: Ensure Cypress binary permissions
+     run: chmod +x ./node_modules/.bin/cypress
+
+   - name: Run Cypress tests
      run: npx cypress run
