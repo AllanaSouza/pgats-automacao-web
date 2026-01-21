@@ -1,40 +1,24 @@
-
-name: Cypress Tests
+name: Web E2E Tests
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
+  e2e-tests:
 
-    steps:
-      # Clona o repositório
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  runs-on: ubuntu-lastest
 
-      # Instala Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+  steps:
 
-      # Instala dependências
-      - name: Install dependencies
-        run: npm ci
+  # clone do projeto para a máquina
+  - uses: actions/checkout@v4
 
-      # Executa os testes Cypress
-      - name: Run Cypress tests
-        run: npx cypress run
+  # Conferir a versão instalada
+  - name: Node version
+    run: node --version
 
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: relatorios
-        path: |
-        cypress/videos
-        cypress/screenshots
-        cypress/reports
+  - name: Instalando dependências
+    run: npm install
+
+  - name: Executando os testes
+    run: npx cypress run
