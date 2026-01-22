@@ -19,7 +19,7 @@ jobs:
              run: npm install
 
            - name: Instalar Cypress
-             run: npx cypress install
+             run: npm install cypress
 
            - name: Executar apenas CTs1-16prova.cy.js
              run: npx cypress run --spec "cypress/e2e/CTs-16prova.cy.js"
