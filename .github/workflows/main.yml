@@ -1,40 +1,39 @@
-name:  Cypress  - CTs1-16prova
+name:  Web  E2E  Tests  - CTs1-16prova
 
 on:
-   push:
-       branches:  [  "main"  ]
-   pull_request:
-       branches:  [  "main"  ]
+   workflow_dispatch:
 
 jobs:
-    run-specific-test:
-       runs-on: ubuntu-latest
+   e2e-tests:
+       runs-on:  ubuntu-latest
 
        steps:
-           -  name: Checkout  repository
+           # clone  do  projeto  para  a máquina
+           -  name:  Checkout do  repositório
               uses:  actions/checkout@v4
 
-           - name: Setup Node
-             uses: actions/setup-node@v4
-             with:
-                 node-version: 18
+           - name: Conferir a versão instalada do Node
+             run: node --version
 
-           - name: Install dependencies
+           - name: Instalando dependências
              run: npm install
 
-           -  name: Run  CTs1-16prova.cy.js  only
-              run:  npx  cypress  run --spec  "cypress/e2e/CTs1-16prova.cy.js"  --browser  chrome
+           - name: Instalar Cypress
+             run: npx cypress install
 
-           -  name: Upload screenshots (if any)
-              if: failure()
-              uses: actions/upload-artifact@v4
+           - name: Executar apenas CTs1-16prova.cy.js
+             run: npx cypress run --spec "cypress/e2e/CTs-16prova.cy.js"
+
+           -  name: Upload  de  screenshots  (se  houver)
+              if:  failure()
+              uses:  actions/upload-artifact@v4
               with:
                   name: screenshots
-                  path: cypress/screenshots
+                  path:  cypress/screenshots
 
-           - name: Upload videos
+           - name: Upload de vídeos
              if: always()
              uses: actions/upload-artifact@v4
              with:
-                 name: videos
-                 path: cypress/videos
+                name: videos
+                path: cypress/videos
