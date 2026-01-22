@@ -22,7 +22,7 @@ jobs:
              run: npm install cypress
 
            - name: Executar apenas CTs1-16prova.cy.js
-             run: npx cypress run --spec "cypress/e2e/CTs-16prova.cy.js"
+             run: npx  cypress  run --spec  "cypress/e2e/CTs1-16prova.cy.js"
 
            -  name: Upload  de  screenshots  (se  houver)
               if:  failure()
