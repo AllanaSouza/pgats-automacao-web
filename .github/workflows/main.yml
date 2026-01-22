@@ -1,40 +1,40 @@
-name:  Cypress  -  CTs1-16prova
+name:  Cypress  - CTs1-16prova
 
 on:
-    push:
-        branches:  [  "main"  ]
-    pull_request:
-        branches:  [  "main"  ]
+   push:
+       branches:  [  "main"  ]
+   pull_request:
+       branches:  [  "main"  ]
 
 jobs:
     run-specific-test:
-        runs-on:  ubuntu-latest
+       runs-on: ubuntu-latest
 
-        steps:
-            -  name:  Checkout  repository
-                uses:  actions/checkout@v4
+       steps:
+           -  name: Checkout  repository
+              uses:  actions/checkout@v4
 
-            -  name:  Setup  Node
-                uses:  actions/setup-node@v4
-                with:
-                    node-version:  18
+           - name: Setup Node
+             uses: actions/setup-node@v4
+             with:
+                 node-version: 18
 
-            -  name:  Install  dependencies
-                run:  npm  install
+           - name: Install dependencies
+             run: npm install
 
-            -  name:  Run  only  CTs1-16prova.cy.js
-                run:  npx  cypress  run  --spec  "cypress/e2e/CTs1-16prova.cy.js"  --browser  chrome
+           -  name: Run  CTs1-16prova.cy.js  only
+              run:  npx  cypress  run --spec  "cypress/e2e/CTs1-16prova.cy.js"  --browser  chrome
 
-            -  name:  Upload  screenshots  (if  any)
-                if:  failure()
-                uses:  actions/upload-artifact@v4
-                with:
-                    name:  cypress-screenshots
-                    path:  cypress/screenshots
+           -  name: Upload screenshots (if any)
+              if: failure()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: screenshots
+                  path: cypress/screenshots
 
-            -  name:  Upload  videos
-                if:  always()
-                uses:  actions/upload-artifact@v4
-                with:
-                    name:  cypress-videos
-                    path:  cypress/videos
+           - name: Upload videos
+             if: always()
+             uses: actions/upload-artifact@v4
+             with:
+                 name: videos
+                 path: cypress/videos
